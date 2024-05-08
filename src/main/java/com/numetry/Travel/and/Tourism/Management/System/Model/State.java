@@ -16,7 +16,6 @@ public class State {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID stateId;
-    @Column(unique=true)
     private String stateName;
 
 

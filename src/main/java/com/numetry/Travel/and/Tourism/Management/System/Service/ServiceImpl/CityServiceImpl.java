@@ -46,4 +46,29 @@ public class CityServiceImpl implements CityService {
            }
         return list;
     }
+
+
+    public List<CityDto> getAllCities() {
+        List<CityDto>list=new ArrayList<>();
+
+//        State state=stateRepo.findByStateName(stateName);
+        List<City> cityList=cityRepository.findAll();
+        for(City city:cityList){
+            CityDto cityDto=modelMapper.map(city,CityDto.class);
+            State state =city.getState();
+            if(state==null){
+                String cityName="Uttar Pradesh";
+                cityDto.setStateName(cityName);
+            }
+            else{
+                 cityDto.setStateName(city.getState().getStateName());
+            }
+
+            list.add(cityDto);
+
+        }
+        return list;
+    }
+
+
 }

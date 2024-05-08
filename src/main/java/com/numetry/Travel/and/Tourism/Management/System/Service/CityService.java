@@ -8,4 +8,8 @@ public interface CityService {
 
     CityDto addCity(CityDto cityDto,String stateName);
     List<CityDto> getAllCitiesByStateName(String stateName);
+
+    List<CityDto> getAllCities();
+
+
 }

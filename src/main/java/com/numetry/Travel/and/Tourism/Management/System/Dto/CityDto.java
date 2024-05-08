@@ -13,4 +13,5 @@ public class CityDto {
 
     private UUID cityId;
     private String cityName;
+    private String stateName;
 }

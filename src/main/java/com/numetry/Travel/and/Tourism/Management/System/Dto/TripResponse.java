@@ -15,5 +15,8 @@ public class TripResponse {
     private String tripName;
     private String tripAddress;
     private double tripPrice;
+    private String stateName;
+    private String cityName;
+    private String categoryName;
     private String url;
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tripCategory")
+@CrossOrigin
 public class TripCategoryController {
 
     @Autowired

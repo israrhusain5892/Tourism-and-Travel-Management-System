@@ -63,6 +63,9 @@ public class TripServiceImpl  implements TripService {
         for(Trip trip:trips){
             String url="";
              TripResponse res=modelMapper.map(trip,TripResponse.class);
+             res.setCategoryName(trip.getTripCategory().getCategoryName());
+             res.setStateName(trip.getState().getStateName());
+             res.setCityName(trip.getCity().getCityName());
             url= ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/trip/download/")
                     .path(res.getTripId()+"")

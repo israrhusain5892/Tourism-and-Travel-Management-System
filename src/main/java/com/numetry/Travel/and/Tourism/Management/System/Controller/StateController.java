@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/state")
+@CrossOrigin
 public class StateController {
 
     @Autowired

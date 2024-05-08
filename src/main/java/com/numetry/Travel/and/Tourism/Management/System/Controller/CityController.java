@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/city")
+@CrossOrigin
 public class CityController {
 
     @Autowired
@@ -22,5 +23,10 @@ public class CityController {
     @GetMapping("/{stateName}")
     public List<CityDto> getAllCities(@PathVariable String stateName){
           return cityService.getAllCitiesByStateName(stateName);
+    }
+
+    @GetMapping("/")
+    public List<CityDto> getAllCities(){
+        return cityService.getAllCities();
     }
 }
