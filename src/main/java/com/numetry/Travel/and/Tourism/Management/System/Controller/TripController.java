@@ -10,6 +10,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -28,6 +29,7 @@ public class TripController {
 
     @Autowired
     private ObjectMapper objectMapper;
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/{stateName}/{cityName}/{categoryName}")
     public TripResponse addTrip(@RequestParam("tripData") String tripData, @PathVariable String stateName,
                                 @PathVariable String cityName, @PathVariable String categoryName, @RequestParam("tripPhoto") MultipartFile tripPhoto) throws IOException {
@@ -42,7 +44,7 @@ public class TripController {
         res.setUrl(url);
         return res;
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/download/{id}")
     public ResponseEntity<Resource> download(@PathVariable UUID id){
         TripDto tripDto=tripService.getTripById(id);
