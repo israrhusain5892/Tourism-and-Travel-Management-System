@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/trip")
+@RequestMapping("/public/trip")
 @CrossOrigin
 public class TripController {
 
@@ -29,7 +29,8 @@ public class TripController {
 
     @Autowired
     private ObjectMapper objectMapper;
-    @PreAuthorize("hasRole('ADMIN')")
+
+   
     @PostMapping("/{stateName}/{cityName}/{categoryName}")
     public TripResponse addTrip(@RequestParam("tripData") String tripData, @PathVariable String stateName,
                                 @PathVariable String cityName, @PathVariable String categoryName, @RequestParam("tripPhoto") MultipartFile tripPhoto) throws IOException {
@@ -38,13 +39,13 @@ public class TripController {
          TripResponse res=tripService.addTrip(tripDto,stateName,cityName,categoryName,tripPhoto);
 
         url= ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/trip/download/")
+                .path("/public/trip/download/")
                 .path(res.getTripId()+"")
                 .toUriString();
         res.setUrl(url);
         return res;
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @GetMapping("/download/{id}")
     public ResponseEntity<Resource> download(@PathVariable UUID id){
         TripDto tripDto=tripService.getTripById(id);

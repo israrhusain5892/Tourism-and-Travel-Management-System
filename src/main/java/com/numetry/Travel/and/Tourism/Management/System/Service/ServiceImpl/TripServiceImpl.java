@@ -67,7 +67,7 @@ public class TripServiceImpl  implements TripService {
              res.setStateName(trip.getState().getStateName());
              res.setCityName(trip.getCity().getCityName());
             url= ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/trip/download/")
+                    .path("/public/trip/download/")
                     .path(res.getTripId()+"")
                     .toUriString();
             res.setUrl(url);

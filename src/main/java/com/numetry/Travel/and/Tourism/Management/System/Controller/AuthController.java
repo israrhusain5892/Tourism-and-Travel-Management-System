@@ -26,6 +26,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin
 public class AuthController {
 
      @Autowired
@@ -53,7 +55,8 @@ public class AuthController {
     private RoleRepository rol;
 
 
-
+     @Autowired
+     private ModelMapper mapper;
 
      @PostMapping("/login")
      public ResponseEntity<JwtResponse> createToken(@RequestBody AuthRequest authRequest){
@@ -64,7 +67,7 @@ public class AuthController {
            String token=jwtTokenHelper.generateToken(userDetails);
            JwtResponse jwtResponse=JwtResponse.builder()
                            .token(token)
-                           .username(userDetails.getUsername())
+                           .userDto(mapper.map((User)userDetails,UserDto.class))
                            .build();
 
 

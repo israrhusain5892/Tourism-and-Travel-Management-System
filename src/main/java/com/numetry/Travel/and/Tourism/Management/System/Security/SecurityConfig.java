@@ -5,6 +5,7 @@ import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -54,8 +55,9 @@ public class SecurityConfig {
 
        return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth->
-                        auth.requestMatchers("/auth/**")
+                        auth.requestMatchers("/auth/**","/public/trip/**","/api/otp/**")
                                 .permitAll()
+                                .requestMatchers(HttpMethod.GET).permitAll()
                                 .requestMatchers("/user/**").hasRole("ADMIN")
                                 .anyRequest()
                                 .authenticated()
