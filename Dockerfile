@@ -4,7 +4,7 @@ FROM maven:3.8.5-openjdk-17 AS builder
 WORKDIR /app
 COPY pom.xml .
 
-RUN mvn dependency:go-offline-build
+# RUN mvn dependency:go-offline-build
 COPY . .
 # COPY ${JAR_FILE} app.jar
 RUN mvn clean package -DskipTests
