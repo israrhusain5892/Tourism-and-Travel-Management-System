@@ -7,4 +7,4 @@ COPY ${JAR_FILE} app.jar
 # FROM openjdk:17.0.1-jdk-slim
 # COPY --from=build /target/Travel-and-Tourism-Management-System-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8081
-ENTRYPOINT [ "java","--jar" ,"Travel-and-Tourism-Management-System-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT [ "java","-jar" ,"Travel-and-Tourism-Management-System-0.0.1-SNAPSHOT.jar"]
