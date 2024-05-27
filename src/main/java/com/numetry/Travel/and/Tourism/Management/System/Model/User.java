@@ -46,10 +46,6 @@ public class User implements UserDetails {
     private String email;
 
     @NotBlank(message="password is required")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
-      ,message="password should contain at least one Capital Letter, one small , one digit and" +
-            "one special character"
-    )
     private String password;
 
     @ManyToMany(cascade = {CascadeType.ALL,CascadeType.REMOVE},fetch = FetchType.EAGER )
