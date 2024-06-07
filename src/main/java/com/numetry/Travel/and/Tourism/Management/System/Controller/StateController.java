@@ -24,4 +24,5 @@ public class StateController {
     public List<StateDto> getAllStates(){
          return stateService.getAllSates();
     }
+    
 }

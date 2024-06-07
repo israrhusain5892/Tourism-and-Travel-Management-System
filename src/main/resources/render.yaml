@@ -1,0 +1,11 @@
+# Exported from Render on 2024-06-07T07:26:07Z
+services:
+- type: web
+  name: Tourism-and-Travel-Management-System
+  runtime: docker
+  repo: https://github.com/israrhusain5892/Tourism-and-Travel-Management-System
+  plan: free
+  region: oregon
+  dockerContext: .
+  dockerfilePath: ./Dockerfile
+version: "1"

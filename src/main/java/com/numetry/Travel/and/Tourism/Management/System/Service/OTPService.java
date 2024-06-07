@@ -4,10 +4,11 @@ package com.numetry.Travel.and.Tourism.Management.System.Service;
 
 
 
-import com.vonage.client.VonageClient;
-import com.vonage.client.sms.SmsSubmissionResponse;
-import com.vonage.client.sms.messages.TextMessage;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 
+
+import com.twilio.type.PhoneNumber;
 import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -24,36 +25,47 @@ public class OTPService {
          private final Map<String, OTPDetails> otpStorage = new ConcurrentHashMap<>();
 
 
-    @Value("${nexmo.api.key}")
-    private String apiKey;
+    // @Value("${nexmo.api.key}")
+    // private String apiKey;
 
-    @Value("${nexmo.api.secret}")
-    private String apiSecret;
+    // @Value("${nexmo.api.secret}")
+    // private String apiSecret;
 
-    @Value("${nexmo.phone.number}")
-    private String fromNumber;
+    // @Value("${nexmo.phone.number}")
+    // private String fromNumber;
 
-    private VonageClient vonageClient;
+    @Value("${twilio.accountSid}")
+    private String accountSid;
 
-    @PostConstruct
-    public void init() {
-        this.vonageClient = VonageClient.builder()
-                .apiKey(apiKey)
-                .apiSecret(apiSecret)
-                .build();
+    @Value("${twilio.authToken}")
+    private String authToken;
+
+    @Value("${twilio.phoneNumber}")
+    private String fromPhoneNumber;
+
+
+    public OTPService(@Value("${twilio.accountSid}") String accountSid,
+                         @Value("${twilio.authToken}") String authToken) {
+        Twilio.init(accountSid, authToken);
     }
 
-    public void sendSMS(String toNumber, String message) {
-           String number="91"+toNumber;
-        TextMessage textMessage = new TextMessage(fromNumber, number, message);
-        SmsSubmissionResponse response = vonageClient.getSmsClient().submitMessage(textMessage);
-        
+    
+
+    
+
+    public void sendSMS(String toPhoneNumber) {
+         String otp= OTPGenerator.generateOTP();
+        Message.creator(
+                new PhoneNumber(toPhoneNumber),
+                new PhoneNumber(fromPhoneNumber),
+                "Your OTP is: " + otp
+        ).create();
     }
 
     public void generateAndSendOTP(String mobileNumber) {
         String otp = OTPGenerator.generateOTP();
         String message = "Your OTP is: " + otp;
-         sendSMS(mobileNumber, message);
+         sendSMS(mobileNumber);
 
          OTPDetails otpDetails = new OTPDetails(otp, System.currentTimeMillis());
         otpStorage.put(mobileNumber, otpDetails);

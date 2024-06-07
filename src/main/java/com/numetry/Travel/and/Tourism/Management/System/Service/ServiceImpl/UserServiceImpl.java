@@ -11,7 +11,10 @@ import com.numetry.Travel.and.Tourism.Management.System.Service.UserService;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+// import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,8 +32,12 @@ public class UserServiceImpl {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+      // @Bean
+	// public PasswordEncoder passwordEncoder3(){
+	//  return new BCryptPasswordEncoder();
+	// }
+      @Autowired
+      private PasswordEncoder passwordEncoder;
 
     @Autowired
     private RoleRepository roleRepository;

@@ -34,10 +34,10 @@ public class UserDto {
     private String email;
 
     @NotNull(message="password is required")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
-            ,message="password should contain at least one Capital Letter, one small , one digit and" +
-            "one special character"
-    )
+//     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
+//             ,message="password should contain at least one Capital Letter, one small , one digit and" +
+//             "one special character"
+//     )
     private String password;
 
 
