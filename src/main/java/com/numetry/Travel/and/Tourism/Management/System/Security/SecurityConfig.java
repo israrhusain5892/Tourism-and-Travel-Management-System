@@ -27,11 +27,7 @@ import lombok.AllArgsConstructor;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
-    
 
-//    @Autowired
-//    @Lazy
-//    private CustomUserDetailService userDetailsService;
 
       @Autowired
       private UserDetailsService userDetailsService;
