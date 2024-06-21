@@ -10,10 +10,11 @@ import lombok.NoArgsConstructor;
 public class BusDTO {
 
     private Long id;
-    private String busNumber;
+    private String bus_number;
     private String busType;
     private Integer capacity;
     private RouteDTO route;
+    private String imageUrl;
    
  }
 

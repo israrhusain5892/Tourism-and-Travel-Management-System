@@ -54,8 +54,10 @@ public class BusServiceImpl implements BusService {
 
         Bus bus = new Bus();
         bus.setBusType(busDTO.getBusType());
+        bus.setBus_number(busDTO.getBus_number());
         bus.setCapacity(busDTO.getCapacity());
         bus.setRoute(route);
+        bus.setImageUrl(busDTO.getImageUrl());
         busRepository.save(bus);
         return convertToDto(bus);
     }
@@ -69,7 +71,7 @@ public class BusServiceImpl implements BusService {
         Route route = routeRepository.findById(busDTO.getRoute().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Route not found"));
         
-
+        bus.setBus_number(busDTO.getBus_number());
         bus.setBusType(busDTO.getBusType());
         bus.setCapacity(busDTO.getCapacity());
         bus.setRoute(route);
@@ -91,16 +93,18 @@ public class BusServiceImpl implements BusService {
                 bus.getRoute().getOrigin(),
                 bus.getRoute().getDestination(),
                 bus.getRoute().getDistance()
+                
         );
 
        
 
         return new BusDTO(
                 bus.getId(),
-                bus.getBusNumber(),
+                bus.getBus_number(),
                 bus.getBusType(),
                 bus.getCapacity(),
-                routeDTO
+                routeDTO,
+                bus.getImageUrl()
                
         );
     }

@@ -23,9 +23,10 @@ public class Bus {
     // @ManyToOne
     // @JoinColumn(name = "operator_id")
     // private Operator operator;
-    private String busNumber;
+    private String bus_number;
     private String busType;
     private Integer capacity;
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "route_id")

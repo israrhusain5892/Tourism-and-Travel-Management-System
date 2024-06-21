@@ -22,8 +22,8 @@ import com.numetry.Travel.and.Tourism.Management.System.Service.BusService;
 
 
 @RestController
-@RequestMapping("/public/bus")
 @CrossOrigin
+@RequestMapping("/public/bus")
 public class BusController {
 
     private final BusService busService;
