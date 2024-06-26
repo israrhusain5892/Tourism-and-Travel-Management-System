@@ -48,6 +48,26 @@ public class User implements UserDetails {
     @NotBlank(message="password is required")
     private String password;
 
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+     private List<UserEnquery> enqueries=new ArrayList<>();
+
+     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+     private List<HotelBooking> hotelBookings=new ArrayList<>();
+
+     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+     private List<BusBooking> busBookings=new ArrayList<>();
+
+     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+     private List<TourPlaceBooking> tourPlaceBookings=new ArrayList<>();
+
+     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+     private List<TripBooking> tripBookings=new ArrayList<>();
+
+     @ManyToOne
+     @JoinColumn(name="tourPackageBooingId")
+     private TourPackageBooking tourPackageBooking;
+
     @ManyToMany(cascade = {CascadeType.ALL,CascadeType.REMOVE},fetch = FetchType.EAGER )
     @JoinTable(name="user_role",
              joinColumns = {@JoinColumn(name="USER",referencedColumnName = "userId")},
@@ -92,6 +112,6 @@ public class User implements UserDetails {
         return true;
     }
 
-
+    
    
 }

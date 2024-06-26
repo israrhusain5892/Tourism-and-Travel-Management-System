@@ -13,6 +13,8 @@ public class RouteDTO {
     private String origin;
     private String destination;
     private Double distance;
+    private String departTime;
+    private String arriveTime;
     
 
 }

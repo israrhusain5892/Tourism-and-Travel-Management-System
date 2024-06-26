@@ -11,5 +11,6 @@ public class HotelResponse {
     private String city;
     private String state;
     private int rating;
+    private double pricePerDay;
     private String url;
 }

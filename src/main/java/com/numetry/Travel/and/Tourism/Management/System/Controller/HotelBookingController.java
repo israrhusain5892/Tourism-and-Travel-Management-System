@@ -10,31 +10,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.numetry.Travel.and.Tourism.Management.System.Model.Booking;
-import com.numetry.Travel.and.Tourism.Management.System.Service.BookingService;
+import com.numetry.Travel.and.Tourism.Management.System.Dto.HotelBookingDto;
+import com.numetry.Travel.and.Tourism.Management.System.Model.HotelBooking;
+import com.numetry.Travel.and.Tourism.Management.System.Service.HotelBookingService;
 
 
 @RestController
-@RequestMapping("/api/bookings")
-public class BookingController {
+@RequestMapping("/public/bookings")
+public class HotelBookingController {
 	 @Autowired
-	    private BookingService bookingService;
+	    private HotelBookingService bookingService;
 
 	    @GetMapping
-	    public List<Booking> getAllBookings() {
+	    public List<HotelBookingDto> getAllBookings() {
 	        return bookingService.getAllBookings();
 	    }
 
 	    @GetMapping("/{id}")
-	    public  java.util.Optional<Booking> getBookingById(@PathVariable Long id) {
+	    public  java.util.Optional<HotelBooking> getBookingById(@PathVariable Long id) {
 	        return bookingService.getBookingById(id);
 	    }
 
-	    @PostMapping
-	    public Booking addBooking(@RequestBody Booking booking) {
-	        return bookingService.addBooking(booking);
+	    @PostMapping("/{email}/{hotelId}")
+	    public HotelBookingDto addBooking(@PathVariable String email, @PathVariable Long hotelId,@RequestParam int bookForDays) {
+	        return bookingService.addBooking(email,hotelId,bookForDays);
 	    }
 
 	    @DeleteMapping("/{id}")

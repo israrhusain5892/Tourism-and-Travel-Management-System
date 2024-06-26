@@ -10,25 +10,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Route {
-    
+public class TourCartItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long tourCartId;
+    private String tripName;
+    private String tripAddress;
+    private double tripPrice;
+    private String url;
 
-    private String origin;
-    private String destination;
-    private Double distance;
-	private String departTime;
-	private String arriveTime;
-	
-	@ManyToOne
-    @JoinColumn(name = "bus_id")
-    private Bus bus;
-
-    
+    @ManyToOne
+    @JoinColumn
+    private TourCart tourCart;
 }

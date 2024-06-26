@@ -1,5 +1,5 @@
-package com.numetry.Travel.and.Tourism.Management.System.Model;
 
+package com.numetry.Travel.and.Tourism.Management.System.Model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,21 +10,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Seat {
+public class UserEnquery {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Integer seatNumber;
-    private String seatBookStatus;
-    
-    @ManyToOne
-    @JoinColumn(name="bus_id")
-    private Bus bus;
-   
-   
+      @Id
+      @GeneratedValue(strategy=GenerationType.IDENTITY)
+      private Long queryId;
+      private  String querySubject;
+      private String messsage;
+
+      @ManyToOne
+      @JoinColumn(name="userId")
+      private User user;
+     
 }

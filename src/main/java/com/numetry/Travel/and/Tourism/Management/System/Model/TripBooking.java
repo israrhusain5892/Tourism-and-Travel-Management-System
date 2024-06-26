@@ -1,5 +1,7 @@
 package com.numetry.Travel.and.Tourism.Management.System.Model;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,21 +16,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Route {
-    
+public class TripBooking {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long tripBookingId;
+    private double tripeBookingPrice;
+    private String tripBookingStatus;
+    private Date bookingDate;
+    private String paymentStatus;
 
-    private String origin;
-    private String destination;
-    private Double distance;
-	private String departTime;
-	private String arriveTime;
-	
-	@ManyToOne
-    @JoinColumn(name = "bus_id")
-    private Bus bus;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "trip_id")
+    private Trip trip;
+
 }

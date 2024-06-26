@@ -17,7 +17,7 @@ public class HotelDto {
 	    private String city;
 	    private String state;
 	    private int rating;
-        
+        private double pricePerDay;
 	    private String fileName;
 		@Column(length=4000000)
 		private byte[] file;
