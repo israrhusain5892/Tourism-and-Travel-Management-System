@@ -20,7 +20,7 @@ import com.numetry.Travel.and.Tourism.Management.System.Repository.TourPackageRe
 import com.numetry.Travel.and.Tourism.Management.System.Service.ServiceImpl.BusServiceImpl;
 import com.numetry.Travel.and.Tourism.Management.System.Service.ServiceImpl.TripServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.transaction.annotation.Transactional;
+// import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TourPackageService {
@@ -44,7 +44,7 @@ public class TourPackageService {
 
     
 
-      @Transactional
+     
       public TourPackageDto createTourPackage(Long hotelId, Long busId, String stateName) {
 
             List<TripResponse> tripResponses = tripServiceImpl.getTripsByStateName(stateName);
@@ -123,7 +123,7 @@ public class TourPackageService {
             return list1;
       }
 
-      @Transactional
+     
       public String deletePackage(Long id) {
             Optional<TourPackage> tourPackageOpt = tourPackageRepo.findById(id);
 
