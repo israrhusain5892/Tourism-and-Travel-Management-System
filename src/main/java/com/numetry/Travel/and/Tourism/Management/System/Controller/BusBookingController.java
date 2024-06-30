@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.numetry.Travel.and.Tourism.Management.System.Dto.BusBookingDto;
+import com.numetry.Travel.and.Tourism.Management.System.Model.BusBooking;
 import com.numetry.Travel.and.Tourism.Management.System.Service.BusBookingService;
 
 @RestController

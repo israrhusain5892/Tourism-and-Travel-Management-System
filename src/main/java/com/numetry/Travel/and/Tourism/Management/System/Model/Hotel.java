@@ -30,7 +30,7 @@ public class Hotel {
 	    private String city;
 	    private String state;
 	    private int rating;
-		private double pricePerDay;
+		private double price;
         
 		 private String fileName;
 		@Lob

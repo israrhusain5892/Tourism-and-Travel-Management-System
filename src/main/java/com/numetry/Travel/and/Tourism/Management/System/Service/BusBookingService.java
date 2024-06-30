@@ -78,11 +78,13 @@ public class BusBookingService {
                   busBooking.setBus(bus);
                   BusBooking saved = busBookingRepository.save(busBooking);
                   BusBookingDto busBookingDto = modelMapper.map(saved, BusBookingDto.class);
-                  busBookingDto.setUser(modelMapper.map(user, UserDto.class));
-                  busBookingDto.setBus(modelMapper.map(bus, BusDTO.class));
+                  // busBookingDto.setUser(modelMapper.map(user, UserDto.class));
+                  // busBookingDto.setBus(modelMapper.map(bus, BusDTO.class));
                  
                   return busBookingDto;
-            } catch (Exception e) {
+
+            } 
+            catch (Exception e) {
                   System.out.println("some thing  went wrong");
             }
 

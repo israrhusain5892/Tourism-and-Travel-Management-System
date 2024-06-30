@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CityServiceImpl implements CityService {
@@ -69,6 +70,16 @@ public class CityServiceImpl implements CityService {
         }
         return list;
     }
+
+    public String deleteCity(UUID id) {
+         
+           City city=cityRepository.findById(id).get();
+            city.setState(null);
+            cityRepository.delete(city);
+
+            return "city deleted successfully";
+
+        }
 
 
 }

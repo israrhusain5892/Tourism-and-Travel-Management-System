@@ -18,5 +18,6 @@ public class BusBookingDto {
      private UserDto user;
      private BusDTO bus;
     
+    
        
 }

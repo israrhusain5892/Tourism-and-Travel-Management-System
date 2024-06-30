@@ -37,6 +37,8 @@ public class BusBooking {
      @JoinColumn(name="bus_id")
      private Bus bus;
 
+    
+
      @OneToOne(fetch = FetchType.LAZY)
      @JoinColumn(name="tourPackageBookingId")
      private TourPackageBooking tourPackageBooking;

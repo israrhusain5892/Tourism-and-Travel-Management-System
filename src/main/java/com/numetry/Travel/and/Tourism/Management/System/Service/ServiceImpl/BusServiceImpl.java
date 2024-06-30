@@ -78,7 +78,7 @@ public class BusServiceImpl implements BusService {
         bus.setBusType(busDTO.getBusType());
         bus.setBus_number(busDTO.getBus_number());
         bus.setCapacity(busDTO.getCapacity());
-       
+        
          List<Route> routes=bus.getRoutes();
         for(Route route:routeList){
             routes.add(route);

@@ -114,7 +114,7 @@ public class TourPackageBookingService {
                   hotelBooking.setBookingDate(new Date());
                   hotelBooking.setStatus("BOOKED");
                   hotelBooking.setBookForDays(bookForDays);
-                  double price = tourPackage.getHotel().getPricePerDay();
+                  double price = tourPackage.getHotel().getPrice();
                   hotelBooking.setBookingPrice(price * bookForDays);
                   hotelBooking.setPaymentStatus("PENDING");
                   List<HotelBooking> bookings = user.getHotelBookings();
@@ -132,7 +132,7 @@ public class TourPackageBookingService {
                   TourPackageBooking tourPackageBooking = new TourPackageBooking();
 
                   tourPackageBooking.setBookingStatus("BOOKED");
-                  double price1 = tourPackage.getPackagePrice() + tourPackage.getHotel().getPricePerDay() * bookForDays
+                  double price1 = tourPackage.getPackagePrice() + tourPackage.getHotel().getPrice() * bookForDays
                               + distance * 5;
                   tourPackageBooking.setBookingPrice(price1);
                   List<User> users = tourPackageBooking.getUser();
