@@ -100,8 +100,15 @@ public class AuthController {
      }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDto> addUser(@Valid @RequestBody UserDto userDto){
-
+    public ResponseEntity<?> addUser(@Valid @RequestBody UserDto userDto){
+         
+        List<UserDto> users=userService.getUsers();
+         boolean userExists=users.stream().anyMatch(
+               user->user.getEmail().toLowerCase().equals(userDto.getEmail().toLowerCase())
+            );
+         if(userExists){
+            return new ResponseEntity<>("User with this "+userDto.getEmail()+" already registered !!",HttpStatus.ACCEPTED);  
+         }
          UserDto userDto2=userService.registerUser(userDto);
          return new ResponseEntity<>(userDto2,HttpStatus.ACCEPTED);
     }

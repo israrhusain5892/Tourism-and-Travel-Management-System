@@ -1,24 +1,17 @@
 package com.numetry.Travel.and.Tourism.Management.System.Model;
-
-
-import com.numetry.Travel.and.Tourism.Management.System.Repository.RoleRepository;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.action.internal.OrphanRemovalAction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Entity
@@ -45,12 +38,33 @@ public class User implements UserDetails {
     )
     private String email;
 
+//    @NotBlank(message="password is required")
+//    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
+//      ,message="password should contain at least one Capital Letter, one small , one digit and" +
+//            "one special character"
+//    )
     @NotBlank(message="password is required")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
-      ,message="password should contain at least one Capital Letter, one small , one digit and" +
-            "one special character"
-    )
     private String password;
+
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+     private List<UserEnquery> enqueries=new ArrayList<>();
+
+     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+     private List<HotelBooking> hotelBookings=new ArrayList<>();
+
+     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+     private List<BusBooking> busBookings=new ArrayList<>();
+
+     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+     private List<TourPlaceBooking> tourPlaceBookings=new ArrayList<>();
+
+     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+     private List<TripBooking> tripBookings=new ArrayList<>();
+
+     @ManyToOne
+     @JoinColumn(name="tourPackageBooingId")
+     private TourPackageBooking tourPackageBooking;
 
     @ManyToMany(cascade = {CascadeType.ALL,CascadeType.REMOVE},fetch = FetchType.EAGER )
     @JoinTable(name="user_role",
@@ -96,6 +110,6 @@ public class User implements UserDetails {
         return true;
     }
 
-
+    
    
 }

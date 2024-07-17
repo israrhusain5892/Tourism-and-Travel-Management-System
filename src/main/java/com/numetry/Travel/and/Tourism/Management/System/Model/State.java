@@ -19,6 +19,6 @@ public class State {
     private String stateName;
 
 
-    @OneToMany(mappedBy = "state",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "state",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<City> cityList=new ArrayList<>();
 }

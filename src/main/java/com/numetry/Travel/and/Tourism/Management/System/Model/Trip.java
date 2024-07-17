@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -38,6 +40,10 @@ public class Trip {
     @JoinColumn(name="cityId")
     private City city;
 
+      
+    @OneToMany(mappedBy = "trip",cascade = CascadeType.ALL)
+     private List<TripBooking> tripBookings=new ArrayList<>();
+      
 
 }
 
