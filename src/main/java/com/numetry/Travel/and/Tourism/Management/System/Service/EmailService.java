@@ -7,7 +7,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.*;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 

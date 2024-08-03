@@ -9,8 +9,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
-public class TravelAndTourismManagementSystemApplication {
+public class TravelAndTourismManagementSystemApplication { 
 
+	
 	public static void main(String[] args) {
 		SpringApplication.run(TravelAndTourismManagementSystemApplication.class, args);
 	}
